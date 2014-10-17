@@ -10,9 +10,11 @@
 #define bit_clr(v,n)    ((v)[(n) >> 3] &=~(0x1 << (0x7 - (n) & 0x7)))
 
 void
-bloomfilter_init(struct bloomfilter *bloomfilter)
+bloomfilter_init(struct bloomfilter *bloomfilter, unsigned int bit_size)
 {
-	memset(bloomfilter->bitarray, 0, bloomfilter->bit_size >> 3);
+	memset(bloomfilter, 0, sizeof(*bloomfilter));
+	bloomfilter->bit_size = bit_size;
+	memset(bloomfilter->bit_array, 0, bloomfilter->bit_size >> 3);
 }
 
 void
@@ -27,8 +29,8 @@ bloomfilter_set(struct bloomfilter *bloomfilter, char key[], size_t len)
 	a %= bloomfilter->bit_size;
 	b %= bloomfilter->bit_size;
 
-	bit_set(bloomfilter->bitarray, a);
-	bit_set(bloomfilter->bitarray, b);
+	bit_set(bloomfilter->bit_array, a);
+	bit_set(bloomfilter->bit_array, b);
 }
 
 int
@@ -43,8 +45,8 @@ bloomfilter_get(struct bloomfilter *bloomfilter, char key[], size_t len)
 	a %= bloomfilter->bit_size;
 	b %= bloomfilter->bit_size;
 
-	a = bit_get(bloomfilter->bitarray, a);
-	b = bit_get(bloomfilter->bitarray, b);
+	a = bit_get(bloomfilter->bit_array, a);
+	b = bit_get(bloomfilter->bit_array, b);
 
 	return (a && b);
 }

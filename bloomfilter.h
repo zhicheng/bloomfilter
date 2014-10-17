@@ -5,11 +5,11 @@
 
 struct bloomfilter {
 	unsigned int  bit_size;
-	unsigned char bitarray[1];
+	unsigned char bit_array[1];
 };
 
 void
-bloomfilter_init(struct bloomfilter *bloomfilter);
+bloomfilter_init(struct bloomfilter *bloomfilter, unsigned int bit_size);
 
 void
 bloomfilter_set(struct bloomfilter *bloomfilter, char key[], size_t len);
