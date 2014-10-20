@@ -5,9 +5,9 @@
 
 #include "murmur3.h"
 
-#define bit_set(v,n)    ((v)[(n) >> 3] |= (0x1 << (0x7 - (n) & 0x7)))
-#define bit_get(v,n)    ((v)[(n) >> 3] &  (0x1 << (0x7 - (n) & 0x7)))
-#define bit_clr(v,n)    ((v)[(n) >> 3] &=~(0x1 << (0x7 - (n) & 0x7)))
+#define bit_set(v,n)    ((v)[(n) >> 3] |= (0x1 << (0x7 - ((n) & 0x7))))
+#define bit_get(v,n)    ((v)[(n) >> 3] &  (0x1 << (0x7 - ((n) & 0x7))))
+#define bit_clr(v,n)    ((v)[(n) >> 3] &=~(0x1 << (0x7 - ((n) & 0x7))))
 
 void
 bloomfilter_init(struct bloomfilter *bloomfilter, unsigned int bit_size)
