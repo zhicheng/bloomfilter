@@ -4,12 +4,13 @@
 #include <stdlib.h>
 
 struct bloomfilter {
-	unsigned int  bit_size;
-	unsigned char bit_array[1];
+	unsigned int  m;
+	unsigned int  k;
+	unsigned char bit_vector[1];
 };
 
 void
-bloomfilter_init(struct bloomfilter *bloomfilter, unsigned int bit_size);
+bloomfilter_init(struct bloomfilter *bloomfilter, unsigned int m, unsigned int k);
 
 void
 bloomfilter_set(struct bloomfilter *bloomfilter, void *key, size_t len);

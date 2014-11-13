@@ -9,8 +9,8 @@ main(void)
         int i;
         struct bloomfilter *bloomfilter;
 
-        bloomfilter = malloc(sizeof(struct bloomfilter) + 1000);
-        bloomfilter_init(bloomfilter, 1000 << 3);
+        bloomfilter = malloc(sizeof(struct bloomfilter) + 52 * 8);
+        bloomfilter_init(bloomfilter, 52, 2);
 
         bloomfilter_set(bloomfilter, "a", 1);
         bloomfilter_set(bloomfilter, "b", 1);
