@@ -9,7 +9,7 @@ fmix32(uint32_t h)
 }
 
 void
-murmur3_hash32(const void *key, int len, uint32_t seed, void *out)
+murmur3_hash32(const void *key, size_t len, uint32_t seed, void *out)
 {
 	const uint32_t c1 = 0xcc9e2d51;
 	const uint32_t c2 = 0x1b873593;
